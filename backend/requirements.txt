@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+motor
+pymongo
+pydantic
+python-dotenv
+python-multipart
+bcrypt
+passlib
+PyJWT
+email-validator
+resend
+requests
+httpx
+Jinja2

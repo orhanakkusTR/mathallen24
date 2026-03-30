@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 30 25% 98%;
+        --foreground: 24 10% 10%;
+        --card: 0 0% 100%;
+        --card-foreground: 24 10% 10%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 24 10% 10%;
+        --primary: 0 84% 50%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 24 95% 53%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 30 10% 96%;
+        --muted-foreground: 24 5% 45%;
+        --accent: 0 100% 96%;
+        --accent-foreground: 0 84% 35%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 24 6% 90%;
+        --input: 24 6% 90%;
+        --ring: 0 84% 50%;
+        --radius: 0.75rem;
+        --chart-1: 0 84% 50%;
+        --chart-2: 24 95% 53%;
+        --chart-3: 45 93% 47%;
+        --chart-4: 142 71% 45%;
+        --chart-5: 199 89% 48%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Manrope', sans-serif;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D6D3D1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A8A29E;
+}
+
+/* Hover effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Glass effect */
+.glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Stagger animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Offer card styles */
+.offer-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Map container */
+.map-container {
+    filter: saturate(0.9) contrast(1.05);
+}
+
+/* Mobile menu animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-menu-enter {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Reviews Carousel Auto-scroll */
+@keyframes scrollReviews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.reviews-carousel {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.animate-scroll-reviews {
+    animation: scrollReviews 30s linear infinite;
+    width: max-content;
+}
+
+.animate-scroll-reviews:hover {
+    animation-play-state: paused;
+}
+
+.animate-scroll-reviews-slow {
+    animation: scrollReviews 45s linear infinite;
+    width: max-content;
+}
+
+.animate-scroll-reviews-slow:hover {
+    animation-play-state: paused;
+}
+
+/* Newsletter popup */
+@keyframes popupAppear {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideInFromRight {
+    from { opacity: 0; transform: translate(100%, -50%); }
+    to { opacity: 1; transform: translate(0, -50%); }
+}
+
+.animate-popup-appear {
+    animation: popupAppear 0.4s ease-out forwards;
+}
+
+.animate-slide-in-from-right {
+    animation: slideInFromRight 0.3s ease-out forwards;
+}
+
+.writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+/* Gentle float animation for badges */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}

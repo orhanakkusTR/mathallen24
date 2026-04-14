@@ -180,13 +180,13 @@ const VALUES = [
     icon: ShoppingCart,
     title: 'Prisvärdhet',
     description: 'Bästa priserna i området',
-    image: '/images/store-interior.jpg',
+    image: '/images/Prisvardhet-gorsel.png',
   },
   {
     icon: Heart,
     title: 'Lokal service',
     description: 'Personlig service med ett leende',
-    image: '/images/shopping.jpg',
+    image: '/images/kund-fokus.png',
   },
   {
     icon: Globe,

@@ -7,6 +7,7 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import certifi
 import os
+import platform
 import logging
 import asyncio
 from pathlib import Path
@@ -28,7 +29,11 @@ load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url, tlsCAFile=certifi.where())
+# Use certifi CA file on macOS (dev), rely on system CA on Linux (Railway)
+mongo_kwargs = {}
+if platform.system() == 'Darwin':
+    mongo_kwargs['tlsCAFile'] = certifi.where()
+client = AsyncIOMotorClient(mongo_url, **mongo_kwargs)
 db = client[os.environ.get('DB_NAME', 'mathallen24')]
 
 # Resend setup

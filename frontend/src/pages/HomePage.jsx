@@ -317,10 +317,12 @@ function OffersSection() {
     return page * perPage * (card.offsetWidth + gap);
   }
 
+  const [isPaused, setIsPaused] = React.useState(false);
+
   // Auto-scroll by page
   useEffect(() => {
-    if (totalPages <= 1) return;
-    autoPlayRef.current = setInterval(() => {
+    if (totalPages <= 1 || isPaused) return;
+    const id = setInterval(() => {
       setActiveIndex((prev) => {
         const next = prev >= totalPages - 1 ? 0 : prev + 1;
         if (scrollRef.current) {
@@ -328,28 +330,12 @@ function OffersSection() {
         }
         return next;
       });
-    }, 2000);
-    return () => clearInterval(autoPlayRef.current);
-  }, [offers, totalPages, perPage]);
-
-  // Track scroll position for dots
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    function onScroll() {
-      const card = el.children[0];
-      if (!card) return;
-      const gap = parseFloat(getComputedStyle(el).gap) || 16;
-      const pageWidth = perPage * (card.offsetWidth + gap);
-      const page = Math.round(el.scrollLeft / pageWidth);
-      setActiveIndex(page);
-    }
-    el.addEventListener('scroll', onScroll, { passive: true });
-    return () => el.removeEventListener('scroll', onScroll);
-  }, [offers, perPage]);
+    }, 2500);
+    autoPlayRef.current = id;
+    return () => clearInterval(id);
+  }, [offers, totalPages, perPage, isPaused]);
 
   function scrollToPage(page) {
-    clearInterval(autoPlayRef.current);
     setActiveIndex(page);
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ left: getPageScrollLeft(page), behavior: 'smooth' });
@@ -394,6 +380,8 @@ function OffersSection() {
           <RevealSection>
             <div
               ref={scrollRef}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
               className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
               style={{ scrollSnapType: 'x mandatory' }}
             >

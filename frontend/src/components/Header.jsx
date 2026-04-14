@@ -47,12 +47,12 @@ const Header = () => {
               <span className="w-px h-4 bg-red-200" />
               <span className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-red-500" />
-                <span>Öppet: 08–22</span>
+                <span>Öppet Alla Dagar: 08-20</span>
               </span>
               <span className="w-px h-4 bg-red-200" />
-              <a href="tel:+46409244220" className="flex items-center gap-2 hover:text-red-700 transition-colors">
+              <a href="tel:+46707952060" className="flex items-center gap-2 hover:text-red-700 transition-colors">
                 <Phone className="w-4 h-4 text-red-500" />
-                <span>040-92 44 20</span>
+                <span>070-795 20 60</span>
               </a>
             </div>
             <div className="text-red-500 font-medium">
@@ -74,12 +74,12 @@ const Header = () => {
             <span className="w-px h-3.5 bg-red-200" />
             <span className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-red-500" />
-              <span>08–22</span>
+              <span>Alla Dagar: 08-20</span>
             </span>
             <span className="w-px h-3.5 bg-red-200" />
-            <a href="tel:+46409244220" className="flex items-center gap-1.5 hover:text-red-700">
+            <a href="tel:+46707952060" className="flex items-center gap-1.5 hover:text-red-700">
               <Phone className="w-3.5 h-3.5 text-red-500" />
-              <span>040-92 44 20</span>
+              <span>070-795 20 60</span>
             </a>
           </div>
         </div>

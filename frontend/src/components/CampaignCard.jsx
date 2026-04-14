@@ -13,33 +13,6 @@ export function getImageUrl(url) {
   return url;
 }
 
-function formatPrice(price) {
-  if (price == null) return null;
-  const num = Number(price);
-  if (isNaN(num)) return null;
-
-  const whole = Math.floor(num);
-  const decimals = Math.round((num - whole) * 100);
-
-  if (decimals === 0) {
-    return (
-      <span className="flex items-baseline">
-        <span className="text-3xl sm:text-4xl font-heading font-black leading-none text-red-700">{whole}</span>
-        <span className="text-lg font-bold ml-0.5 text-red-700">:-</span>
-      </span>
-    );
-  }
-
-  return (
-    <span className="flex items-baseline">
-      <span className="text-3xl sm:text-4xl font-heading font-black leading-none text-red-700">{whole}</span>
-      <span className="text-lg font-bold relative -top-1 ml-0.5 text-red-700">
-        {String(decimals).padStart(2, '0')}
-      </span>
-    </span>
-  );
-}
-
 export default function CampaignCard({ offer }) {
   const {
     product_name,
@@ -54,29 +27,79 @@ export default function CampaignCard({ offer }) {
 
   const imgSrc = getImageUrl(image_url);
 
+  function PriceDisplay({ price, showUnit }) {
+    const num = Number(price);
+    const whole = Math.floor(num);
+    const dec = Math.round((num - whole) * 100);
+    return (
+      <span className="inline-flex items-baseline">
+        <span className="text-red-800 leading-none" style={{ fontSize: '42px', fontWeight: 900 }}>{whole}</span>
+        {dec > 0 ? (
+          <span className="text-red-800 relative" style={{ fontSize: '20px', fontWeight: 900, top: '-12px', marginLeft: '1px' }}>
+            .{String(dec).padStart(2, '0')}
+          </span>
+        ) : (
+          <span className="text-red-800" style={{ fontSize: '20px', fontWeight: 900, marginLeft: '2px' }}>:-</span>
+        )}
+        {showUnit && unit && (
+          <span className="text-red-800" style={{ fontSize: '20px', fontWeight: 900, marginLeft: '1px' }}>/{unit}</span>
+        )}
+      </span>
+    );
+  }
+
+  function OrdPriceDisplay({ price }) {
+    const num = Number(price);
+    const whole = Math.floor(num);
+    const dec = Math.round((num - whole) * 100);
+    return (
+      <span className="inline-flex items-baseline">
+        <span>Ord pris </span>
+        <span className="ml-1" style={{ fontWeight: 900 }}>{whole}</span>
+        {dec > 0 && (
+          <span className="relative" style={{ fontSize: '10px', fontWeight: 900, top: '-4px', marginLeft: '1px' }}>
+            .{String(dec).padStart(2, '0')}
+          </span>
+        )}
+        <span className="ml-px">/{unit || 'st'}</span>
+      </span>
+    );
+  }
+
   return (
-    <div className="group bg-white rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
-      {/* Image section */}
-      <div className="relative aspect-square overflow-hidden bg-stone-100">
+    <div className="group bg-white rounded-2xl overflow-hidden flex flex-col h-full border border-stone-200/60">
+      {/* Image */}
+      <div className="relative bg-white overflow-hidden" style={{ aspectRatio: '1 / 1' }}>
         {imgSrc ? (
           <img
             src={imgSrc}
             alt={product_name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-contain p-4 sm:p-6 group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-stone-400">
+          <div className="w-full h-full flex items-center justify-center text-stone-300 p-6">
             <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
         )}
 
-        {/* Best price ribbon */}
+        {/* Bästa Pris ribbon */}
         {is_best_price && (
-          <div className="absolute top-0 left-0 overflow-hidden w-24 h-24">
-            <div className="absolute top-3 -left-6 w-32 text-center bg-red-600 text-white text-xs font-bold py-1 -rotate-45 shadow-md">
+          <div className="absolute top-0 left-0 w-[110px] h-[110px] overflow-hidden">
+            <div
+              className="absolute bg-[#d12c22] text-white font-bold text-center shadow-sm"
+              style={{
+                width: '160px',
+                top: '26px',
+                left: '-36px',
+                transform: 'rotate(-45deg)',
+                fontSize: '13px',
+                padding: '6px 0',
+                letterSpacing: '0.5px',
+              }}
+            >
               Bästa Pris
             </div>
           </div>
@@ -84,51 +107,48 @@ export default function CampaignCard({ offer }) {
 
         {/* Multi-buy badge */}
         {multi_buy && multi_buy > 1 && (
-          <div className="absolute top-3 right-3 w-12 h-12 bg-red-600 rounded-full flex flex-col items-center justify-center text-white shadow-lg">
+          <div className="absolute top-3 right-3 w-12 h-12 bg-[#d12c22] rounded-full flex flex-col items-center justify-center text-white shadow-md">
             <span className="text-lg font-black leading-none">{multi_buy}</span>
-            <span className="text-[10px] font-semibold uppercase leading-none">För</span>
+            <span className="text-[9px] font-semibold uppercase leading-none">För</span>
           </div>
         )}
       </div>
 
-      {/* Price section */}
-      <div className="bg-yellow-400 px-4 py-3">
-        <p className="text-xs font-bold uppercase tracking-wider text-red-800 mb-1">
+      {/* Yellow price bar */}
+      <div className="bg-yellow-400 px-4 py-4 text-center">
+        <p className="text-red-700 mb-2" style={{ fontWeight: 600, fontSize: '15px' }}>
           Kampanj
         </p>
-        <div className="flex items-baseline gap-1">
-          {multi_buy && multi_buy > 1 && !unit ? (
-            <span className="flex items-baseline gap-1.5">
-              <span className="text-sm font-bold text-red-700">{multi_buy} För</span>
-              {formatPrice(offer_price)}
-            </span>
+        <div className="flex items-baseline justify-center leading-none">
+          {multi_buy && multi_buy > 1 ? (
+            <>
+              <span className="font-bold text-red-800 mr-1" style={{ fontSize: '15px' }}>{multi_buy} För</span>
+              <PriceDisplay price={offer_price} showUnit={false} />
+            </>
           ) : (
-            <span className="flex items-baseline gap-0.5">
-              {formatPrice(offer_price)}
-              {unit && (
-                <span className="text-sm font-semibold text-red-700">/{unit}</span>
-              )}
-            </span>
+            <PriceDisplay price={offer_price} showUnit={true} />
           )}
         </div>
       </div>
 
       {/* Product info */}
-      <div className="px-4 py-3 flex-1 flex flex-col">
-        <h3 className="font-bold text-stone-900 text-sm sm:text-base leading-snug line-clamp-2">
+      <div className="px-4 pt-4 pb-2 text-center">
+        <h3 className="font-bold text-stone-900 text-[15px] leading-snug line-clamp-2">
           {product_name}
         </h3>
         {category && (
-          <p className="text-[11px] uppercase tracking-wide text-stone-400 font-medium mt-1">
+          <p className="text-[11px] uppercase tracking-wider text-stone-400 font-medium mt-1">
             {category}
           </p>
         )}
-        {original_price && Number(original_price) > Number(offer_price) && (
-          <p className="mt-auto pt-2 text-sm text-stone-400 line-through">
-            Ord. pris {Number(original_price).toFixed(2)} kr
-          </p>
-        )}
       </div>
+
+      {/* Ord pris bar */}
+      {original_price && Number(original_price) > Number(offer_price) && (
+        <div className="mt-auto mx-3 mb-3 bg-stone-100 rounded-lg px-3 py-2 text-center text-[13px] text-stone-500">
+          <OrdPriceDisplay price={original_price} />
+        </div>
+      )}
     </div>
   );
 }

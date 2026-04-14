@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Award, Users, Leaf, ArrowRight, Phone, MapPin } from 'lucide-react';
+import { Heart, Award, Users, Leaf, ArrowRight, Phone, MapPin, Mail } from 'lucide-react';
 
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
@@ -43,21 +43,21 @@ const VALUES = [
     title: 'Prisvärdhet',
     description:
       'Vi arbetar hårt för att erbjuda de bästa priserna utan att tumma på kvaliteten. Mat för alla plånböcker.',
-    image: '/images/store-interior.jpg',
+    image: '/images/Prisvardhet-gorsel.png',
   },
   {
     icon: Leaf,
     title: 'Mångfald',
     description:
       'Ett brett sortiment med produkter från hela världen — så att alla kan hitta sina favoriter hos oss.',
-    image: '/images/products-flatlay.png',
+    image: '/images/urunler-cin.jpg',
   },
   {
     icon: Users,
     title: 'Kundfokus',
     description:
       'Vår personal finns alltid till hands för att hjälpa dig. Personlig service är kärnan i det vi gör.',
-    image: '/images/shopping.jpg',
+    image: '/images/kund-fokus.png',
   },
 ];
 
@@ -66,14 +66,14 @@ const VALUES = [
 // ---------------------------------------------------------------------------
 
 const GALLERY = [
-  { title: 'Frukt & Grönt', subtitle: 'Dagliga leveranser', image: '/images/fresh-produce.jpg' },
-  { title: 'Kött & Chark', subtitle: 'Färskt varje dag', image: '/images/store-interior.jpg' },
+  { title: 'Frukt & Grönt', subtitle: 'Dagliga leveranser', image: '/images/vegant.jpg' },
+  { title: 'Kött & Chark', subtitle: 'Färskt varje dag', image: '/images/kot.jpg' },
   { title: 'Internationellt', subtitle: 'Smaker från hela världen', image: '/images/products-flatlay.png' },
-  { title: 'Mejeri', subtitle: 'Ost, mjölk & yoghurt', image: '/images/shopping.jpg' },
-  { title: 'Bröd & Bageri', subtitle: 'Nybakat dagligen', image: '/images/store-exterior.jpg' },
-  { title: 'Kryddor & Oljor', subtitle: 'Smaksättning för alla', image: '/images/fresh-produce.jpg' },
-  { title: 'Drycker', subtitle: 'Juice, läsk & vatten', image: '/images/shopping.jpg' },
-  { title: 'Snacks & Godis', subtitle: 'Sötsaker för alla', image: '/images/products-flatlay.png' },
+  { title: 'Mejeri', subtitle: 'Ost, mjölk & yoghurt', image: '/images/mejeri.jpg' },
+  { title: 'Bröd & Bageri', subtitle: 'Nybakat dagligen', image: '/images/brod.jpg' },
+  { title: 'Asiatiska Produkter', subtitle: 'Smaker från Asien', image: '/images/urunler-cin.jpg' },
+  { title: 'Drycker', subtitle: 'Juice, läsk & vatten', image: '/images/drink.jpg' },
+  { title: 'Snacks & Godis', subtitle: 'Sötsaker för alla', image: '/images/snack.jpg' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -104,11 +104,27 @@ export default function AboutPage() {
                 Din lokala matbutik i Lugnet sedan{' '}
                 <span className="text-red-400">2024</span>
               </h1>
-              <p className="text-stone-300 text-base sm:text-lg leading-relaxed max-w-lg">
+              <p className="text-stone-300 text-base sm:text-lg leading-relaxed max-w-lg mb-8">
                 Mathallen 24 Lugnet är mer än en matbutik — vi är en mötesplats
                 för grannar, en plats där smaker från hela världen möts och där
                 alla är välkomna. Mat för alla, varje dag.
               </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="tel:+46707952060"
+                  className="inline-flex items-center justify-center gap-2 bg-[#d12c22] hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm"
+                >
+                  <Phone className="w-4 h-4" />
+                  Ring oss
+                </a>
+                <a
+                  href="mailto:info24@mathallen.nu"
+                  className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 border border-white/40 text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm"
+                >
+                  <Mail className="w-4 h-4" />
+                  Mejla oss
+                </a>
+              </div>
             </RevealSection>
           </div>
 
@@ -130,84 +146,57 @@ export default function AboutPage() {
       {/* ----------------------------------------------------------------- */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Left — text */}
-            <RevealSection>
-              <div>
-                <p className="text-red-600 font-semibold text-sm uppercase tracking-widest mb-3">
-                  Vår historia
+          <RevealSection>
+            <div className="max-w-full">
+              <p className="text-red-600 font-semibold text-sm uppercase tracking-widest mb-3">
+                Om oss
+              </p>
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-stone-900 leading-tight mb-8">
+                Vår historia
+              </h2>
+              <div className="space-y-5 text-stone-600 text-base sm:text-lg leading-relaxed">
+                <p>
+                  Sedan 2024 har vi på Mathallen 24 haft en tydlig vision – att erbjuda färska råvaror, bra priser och ett brett internationellt sortiment mitt i Malmö. Vår butik speglar stadens mångfald och ger våra kunder möjlighet att upptäcka smaker från hela världen – från asiatiska specialiteter till medelhavsinspirerade produkter och moderna veganska alternativ.
                 </p>
-                <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-stone-900 leading-tight mb-8">
-                  Vår historia
-                </h2>
-                <div className="space-y-5 text-stone-600 text-base sm:text-lg leading-relaxed">
-                  <p>
-                    Mathallen 24 Lugnet är den andra filialen av Mathallen i
-                    Malmö. Vi öppnade vår butik på Lugna gatan 2 i stadsdelen
-                    Lugnet år 2024 med ett tydligt mål — att erbjuda
-                    närområdets invånare en matbutik som kombinerar färska
-                    produkter, bra priser och ett mångkulturellt sortiment
-                    under samma tak.
-                  </p>
-                  <p>
-                    Vår filosofi är enkel: <strong>Mat för alla!</strong>{' '}
-                    Oavsett var du kommer ifrån eller vad du letar efter ska
-                    du kunna hitta det hos oss. Vi har ett brett utbud av
-                    dagligvaror, frukt och grönt, kött och chark samt
-                    internationella specialiteter som gör att alla kan laga
-                    sina favoriträtter.
-                  </p>
-                  <p>
-                    Vi är stolta över att vara en del av Lugnets gemenskap.
-                    Vår butik är mer än bara en matbutik — det är en
-                    mötesplats där grannar träffas och där vi tillsammans
-                    bygger ett bättre kvarter. Varje dag strävar vi efter att
-                    leverera den bästa upplevelsen till alla som besöker oss.
-                  </p>
-                </div>
-
-                {/* Contact info boxes */}
-                <div className="grid grid-cols-2 gap-4 mt-8">
-                  <div className="bg-stone-50 rounded-2xl p-5 flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#d12c22] text-white flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-stone-900">
-                        Telefon
-                      </p>
-                      <p className="text-sm text-stone-600">040-92 44 20</p>
-                    </div>
-                  </div>
-                  <div className="bg-stone-50 rounded-2xl p-5 flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#d12c22] text-white flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-stone-900">
-                        Adress
-                      </p>
-                      <p className="text-sm text-stone-600">
-                        Lugna gatan 2, Malmö
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <p>
+                  Vi tror på att mat förenar människor. Därför strävar vi efter att skapa en plats där alla känner sig välkomna och där det är enkelt att hitta kvalitetsprodukter som passar både smak och budget.
+                </p>
+                <p>
+                  Mathallen 24 Lugnet är vår andra filial i Malmö, belägen på Lugna gatan 2. När vi öppnade butiken hade vi ett tydligt mål: att ge närområdets invånare en komplett matbutik med ett brett och inspirerande sortiment under samma tak. Här hittar du allt från färsk frukt och grönt till kött, chark och internationella delikatesser.
+                </p>
+                <p>
+                  Vår filosofi är enkel – <strong>Mat för alla.</strong> Oavsett bakgrund, smakpreferenser eller behov ska du kunna hitta det du söker hos oss.
+                </p>
+                <p>
+                  Vi är stolta över att vara en del av gemenskapen i Lugnet. För oss är Mathallen 24 mer än bara en butik – det är en mötesplats där människor möts, inspireras och tillsammans skapar ett levande och inkluderande kvarter.
+                </p>
+                <p className="font-semibold text-stone-800">
+                  Välkommen till oss!
+                </p>
               </div>
-            </RevealSection>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
 
-            {/* Right — image */}
-            <RevealSection delay={150}>
-              <div className="relative">
-                <img
-                  src="/images/store-interior.jpg"
-                  alt="Inuti Mathallen 24 Lugnet"
-                  className="rounded-2xl shadow-lg w-full object-cover aspect-[4/3]"
-                  loading="lazy"
-                />
-              </div>
-            </RevealSection>
-          </div>
+      {/* ----------------------------------------------------------------- */}
+      {/* Varför välja oss                                                  */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="py-16 sm:py-24 bg-[#d12c22]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection>
+            <div className="text-center max-w-5xl mx-auto">
+              <p className="text-white/70 font-semibold text-sm uppercase tracking-widest mb-3">
+                Om vårt sortiment
+              </p>
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-6">
+                Varför välja oss?
+              </h2>
+              <p className="text-white/90 text-base sm:text-lg leading-relaxed">
+                Ett brett internationellt sortiment med allt från asiatiska produkter till hälsosamma medelhavsspecialiteter och veganska alternativ. Hos oss hittar du både välkända varumärken och unika produkter från hela världen, alltid med fokus på kvalitet och service.
+              </p>
+            </div>
+          </RevealSection>
         </div>
       </section>
 
@@ -301,34 +290,31 @@ export default function AboutPage() {
       {/* ----------------------------------------------------------------- */}
       {/* 5. CTA Section                                                    */}
       {/* ----------------------------------------------------------------- */}
-      <section className="py-16 sm:py-24 bg-stone-900">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-16 sm:py-24 bg-[#d12c22]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <RevealSection>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-4">
               Välkommen till oss!
             </h2>
-            <p className="text-stone-300 text-base sm:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-              Vi finns på Lugna gatan 2 i Malmö. Öppet alla dagar 08:00–22:00.
+            <p className="text-white/90 text-base sm:text-lg mb-8 leading-relaxed">
+              Vi finns på Lugna gatan 2 i Malmö. Öppet alla dagar 08:00–20:00.
               Kom förbi och upptäck vårt breda sortiment av färska varor till
               fantastiska priser.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                asChild
-                className="bg-[#d12c22] hover:bg-red-700 text-white rounded-full px-8 py-3 text-base font-semibold"
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center gap-2 bg-white text-[#d12c22] font-semibold rounded-full px-8 py-3 text-base hover:bg-stone-100 transition-colors"
               >
-                <Link to="/kontakt">
-                  Hitta till oss
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="border-stone-700 text-white hover:bg-stone-800 rounded-full px-8 py-3 text-base font-semibold bg-transparent"
+                Hitta till oss
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                to="/erbjudanden"
+                className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white font-semibold rounded-full px-8 py-3 text-base hover:bg-white/10 transition-colors"
               >
-                <Link to="/erbjudanden">Se veckans erbjudanden</Link>
-              </Button>
+                Se veckans erbjudanden
+              </Link>
             </div>
           </RevealSection>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ShoppingBasket, Filter, X } from 'lucide-react';
+import { ShoppingBasket, Filter, X, Tag, Calendar } from 'lucide-react';
 import axios from 'axios';
 
 import SEO from '@/components/SEO';
@@ -101,24 +101,51 @@ export default function OffersPage() {
         url="/erbjudanden"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-b from-red-600 to-red-700 text-white py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
-            Veckans erbjudanden
-          </h1>
-          {(campaignWeek || campaignDateRange) && (
-            <div className="flex flex-wrap items-center justify-center gap-3 text-red-100">
-              {campaignWeek && (
-                <span className="bg-white/15 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold">
-                  Vecka {campaignWeek}
-                </span>
-              )}
-              {campaignDateRange && (
-                <span className="text-sm font-medium">{campaignDateRange}</span>
+      {/* Hero — split layout */}
+      <section className="relative bg-stone-900 overflow-hidden">
+        <div className="grid md:grid-cols-2 min-h-[45vh] lg:min-h-[55vh]">
+          {/* Left — text */}
+          <div className="flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] py-12 md:py-16 relative z-10">
+            <div>
+              <span className="inline-flex items-center gap-2 bg-[#d12c22]/15 text-[#ff6b61] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+                <Tag className="w-4 h-4" />
+                Veckans bästa priser
+              </span>
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] mb-5">
+                Veckans
+                <br />
+                <span className="text-[#d12c22]">erbjudanden</span>
+              </h1>
+              <p className="text-stone-300 text-base sm:text-lg leading-relaxed max-w-md mb-6">
+                Upptäck veckans bästa priser på utvalda favoriter – passa på att spara mer.
+              </p>
+              {(campaignWeek || campaignDateRange) && (
+                <div className="inline-flex items-center gap-3 bg-stone-800/80 backdrop-blur-sm rounded-xl px-4 py-2.5 border border-stone-700">
+                  <Calendar className="w-5 h-5 text-[#d12c22] flex-shrink-0" />
+                  <div className="text-left">
+                    {campaignWeek && (
+                      <p className="text-white text-sm font-semibold leading-tight">
+                        Gäller {new Date().getFullYear()} v{campaignWeek}
+                      </p>
+                    )}
+                    {campaignDateRange && (
+                      <p className="text-stone-400 text-xs mt-0.5">{campaignDateRange}</p>
+                    )}
+                  </div>
+                </div>
               )}
             </div>
-          )}
+          </div>
+
+          {/* Right — image (full-bleed to the right edge) */}
+          <div className="relative min-h-[280px] md:min-h-0">
+            <img
+              src="/images/store-interior.jpg"
+              alt="Mathallen 24 Lugnet butik"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/40 to-transparent" />
+          </div>
         </div>
       </section>
 

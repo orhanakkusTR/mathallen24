@@ -68,6 +68,15 @@
     background: #A8A29E;
 }
 
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 /* Hover effects */
 .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;

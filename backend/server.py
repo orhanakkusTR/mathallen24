@@ -5,6 +5,7 @@ from fastapi.responses import Response
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
+import certifi
 import os
 import logging
 import asyncio
@@ -27,7 +28,7 @@ load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
+client = AsyncIOMotorClient(mongo_url, tlsCAFile=certifi.where())
 db = client[os.environ.get('DB_NAME', 'mathallen24')]
 
 # Resend setup
@@ -289,11 +290,11 @@ async def get_current_offers():
 
 @api_router.get("/offers/homepage", response_model=List[Offer])
 async def get_homepage_offers():
-    """Get offers for homepage - only those with home_order set (1-4), sorted by home_order"""
+    """Get offers for homepage - active offers sorted by home_order then sort_order"""
     offers = await db.offers.find(
-        {"home_order": {"$ne": None}, "is_active": True},
+        {"is_active": True},
         {"_id": 0}
-    ).sort("home_order", 1).to_list(4)
+    ).sort([("home_order", 1), ("sort_order", 1)]).to_list(100)
 
     for offer in offers:
         if isinstance(offer.get('created_at'), str):

@@ -30,7 +30,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://www.facebook.com/MathallenMalmo/"
+                href="https://www.facebook.com/mathallen24lugnet/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-red-600 hover:scale-110 transition-all"
@@ -39,7 +39,7 @@ export default function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://www.instagram.com/__mathallen"
+                href="https://www.instagram.com/mathallen24lugnet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-red-600 hover:scale-110 transition-all"
@@ -48,7 +48,7 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://tiktok.com/@mathallen"
+                href="https://tiktok.com/@mathallen24lugnet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-red-600 hover:scale-110 transition-all"
@@ -103,14 +103,14 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-red-500 flex-shrink-0" />
-                <a href="tel:+46409244220" className="text-sm hover:text-red-400 transition-colors">
-                  040-92 44 20
+                <a href="tel:+46707952060" className="text-sm hover:text-red-400 transition-colors">
+                  070-795 20 60
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-red-500 flex-shrink-0" />
-                <a href="mailto:mathallen24@mathallen.nu" className="text-sm hover:text-red-400 transition-colors">
-                  mathallen24@mathallen.nu
+                <a href="mailto:info24@mathallen.nu" className="text-sm hover:text-red-400 transition-colors">
+                  info24@mathallen.nu
                 </a>
               </li>
             </ul>
@@ -126,7 +126,7 @@ export default function Footer() {
               <div className="text-sm space-y-2">
                 <div className="flex justify-between gap-4">
                   <span>Alla dagar</span>
-                  <span className="text-white font-medium">08:00 - 22:00</span>
+                  <span className="text-white font-medium">08:00 - 20:00</span>
                 </div>
               </div>
             </div>

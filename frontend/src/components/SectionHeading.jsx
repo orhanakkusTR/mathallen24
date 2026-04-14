@@ -10,7 +10,7 @@ export default function SectionHeading({ subtitle, title, description, align = '
         </p>
       )}
       {title && (
-        <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 leading-tight">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight whitespace-nowrap">
           {title}
         </h2>
       )}
